@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <title>Document</title>
+    <link href="./output.css" rel ="stylesheet" >
+    
+    <link href="./bootstrap/bootstrap.css" rel ="stylesheet">
+    <link href="./bootstrap/bootstrap.min.css" rel="stylesheet">
+</head>
+  
+
+<body class="bg-red-300">
+    Welcome
+    <h1 class=" text-yellow-200">MakeMyYatra</h1>
+<!--Frontend code-->
+
+
+<!--views/users.html-->
+
+
+<!--Form submission part-->
+
+
+
+
+
+
+<form enctype="multipart/form-data" id ="users">
+
+
+        <input type="number" id="UserID" placeholder="UserID"/>
+
+        <input type="text" id="FullName" placeholder="FullName"/>
+
+        <input type="text" id="Email" placeholder="Email"/>
+
+        <input type="text" id="Phone" placeholder="Phone"/>
+
+        <input type="text" id="Username" placeholder="Username"/>
+
+        <input type="text" id="PasswordHash" placeholder="PasswordHash"/>
+
+        <input type="text" id="AddressLine1" placeholder="AddressLine1"/>
+
+        <input type="text" id="AddressLine2" placeholder="AddressLine2"/>
+
+        <input type="text" id="City" placeholder="City"/>
+
+        <input type="text" id="State" placeholder="State"/>
+
+        <input type="text" id="Country" placeholder="Country"/>
+
+        <input type="text" id="PostalCode" placeholder="PostalCode"/>
+
+        <input type="date" id="DateOfBirth" placeholder="DateOfBirth"/>
+
+        <select id="Gender" name="Gender">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+        </select>
+
+
+        <input type="text" id="ProfileImage" placeholder="ProfileImage"/>
+
+
+
+
+
+        <select id="AccountStatus" name="AccountStatus">
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+                <option value="Suspended">Suspended</option>
+        </select>
+
+
+        <input type="text" id="Notes" placeholder="Notes"/>
+
+<input type="submit" id ="usersSub" class="btn btn-primary"/>
+
+</form>
+
+
+<!--Radio button and search bar-->
+
+
+
+
+<form id ="searchWindow">
+
+
+
+<input type="text" placeholder="Search" id= "searchBar"/>
+
+
+<ul id="searchList"></ul>
+
+
+<button id ="searchBtn"> &#x1F50D</button>
+                <input type="radio" name="GenderChoice" value="Male">Male</input>
+
+
+                <input type="radio" name="GenderChoice" value="Female">Female</input>
+
+
+                <input type="radio" name="GenderChoice" value="Other">Other</input>
+
+
+                <input type="radio" name="AccountStatusChoice" value="Active">Active</input>
+
+
+                <input type="radio" name="AccountStatusChoice" value="Inactive">Inactive</input>
+
+
+                <input type="radio" name="AccountStatusChoice" value="Suspended">Suspended</input>
+
+
+
+</form>
+
+
+
+<li id="usersList"></li>
+
+
+
+
+</form>
+    <script src="index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</body>
+</html>
