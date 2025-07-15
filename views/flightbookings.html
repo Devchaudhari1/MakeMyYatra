@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flightbookings</title>
+<link href ="./output.css" rel="stylesheet"/><link href= "./css/styles.css" rel= "stylesheet">
+</head>
+<body>
+
+
+
+<!--Frontend code-->
+
+<!--views/flightbookings.html-->      <div class="heading">
+                <strong>flightbookings</strong>
+        </div>
+        <div class="subheading">
+                <button>Open Menu</button>
+        </div>
+<div class="contents">
+                <div class="navbar hidden">
+                        <ul>
+                                <a href="./activitiesPage"><li>activities</li></a>
+                                <a href="./activity_bookingsPage"><li>activity_bookings</li></a>
+                                <a href="./busPage"><li>bus</li></a>
+                                <a href="./busbookingsPage"><li>busbookings</li></a>
+                                <a href="./business_partnersPage"><li>business_partners</li></a>
+                                <a href="./cabbookingsPage"><li>cabbookings</li></a>
+                                <a href="./cabdriversPage"><li>cabdrivers</li></a>
+                                <a href="./cabsPage"><li>cabs</li></a>
+                                <a href="./currenciesPage"><li>currencies</li></a>
+                                <a href="./currency_conversion_ratesPage"><li>currency_conversion_rates</li></a>
+                                <a href="./email_notificationsPage"><li>email_notifications</li></a>
+                                <a href="./email_templatesPage"><li>email_templates</li></a>
+                                <a href="./faqsPage"><li>faqs</li></a>
+                                <a href="./flightbookingsPage"><li>flightbookings</li></a>
+                                <a href="./flightsPage"><li>flights</li></a>
+                                <a href="./hotelbookingsPage"><li>hotelbookings</li></a>
+                                <a href="./hotelsPage"><li>hotels</li></a>
+                                <a href="./itinerariesPage"><li>itineraries</li></a>
+                                <a href="./itinerary_placesPage"><li>itinerary_places</li></a>
+                                <a href="./languagesPage"><li>languages</li></a>
+                                <a href="./logsPage"><li>logs</li></a>
+                                <a href="./notificationsPage"><li>notifications</li></a>
+                                <a href="./payment_gateway_feesPage"><li>payment_gateway_fees</li></a>
+                                <a href="./payment_gateway_transactionsPage"><li>payment_gateway_transactions</li></a>
+                                <a href="./paymentsPage"><li>payments</li></a>
+                                <a href="./placesPage"><li>places</li></a>
+                                <a href="./promotionsPage"><li>promotions</li></a>
+                                <a href="./refundsPage"><li>refunds</li></a>
+                                <a href="./restaurantsPage"><li>restaurants</li></a>
+                                <a href="./reviewsPage"><li>reviews</li></a>
+                                <a href="./social_media_accountsPage"><li>social_media_accounts</li></a>
+                                <a href="./trainbookingsPage"><li>trainbookings</li></a>
+                                <a href="./trainsPage"><li>trains</li></a>
+                                <a href="./travel_curatorsPage"><li>travel_curators</li></a>
+                                <a href="./user_preferencesPage"><li>user_preferences</li></a>
+                                <a href="./usersPage"><li>users</li></a>
+                                <a href="./weather_infoPage"><li>weather_info </li></a>
+                        </ul>
+                </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!--Form submission part-->
+
+
+
+
+
+<form enctype="multipart/form-data" id ="flightbookings">  <div class="formentry">
+
+	<input type="number" id="bookingID" placeholder="bookingID"/> 
+
+	<select id="cancelled" name="cancelled">		<option value="Yes">Yes</option>		<option value="No">No</option>	</select>
+	<input type="date" id="date" placeholder="date"/> 
+	<input type="text" id="destination" placeholder="destination"/> 
+	<input type="text" id="flightNumber" placeholder="flightNumber"/> 
+	<input type="text" id="origin" placeholder="origin"/> 
+	<input type="number" id="passengers" placeholder="passengers"/> 
+	<select id="paymentStatus" name="paymentStatus">		<option value="Paid">Paid</option>		<option value="Unpaid">Unpaid</option>	</select>
+	<select id="status" name="status">		<option value="Confirmed">Confirmed</option>		<option value="Pending">Pending</option>		<option value="Cancelled">Cancelled</option>	</select>
+	<select id="type" name="type">		<option value="Economy">Economy</option>		<option value="Business">Business</option>		<option value="First Class">First Class</option>	</select>
+	<input type="text" id="username" placeholder="username"/> 
+
+<input type="submit" id ="flightbookingsSub"/>
+</div>
+
+</form>
+
+<!--Radio button and search bar-->
+
+
+
+<form id ="searchWindow">
+          <div class="search">
+        <input type="text" placeholder="Search" class="searchBar" id= "searchBar"/>     
+
+
+<ul id="searchList"></ul>
+
+<button id ="searchBtn"> &#x1F50D</button>         </div>
+		<input type="radio" name="cancelledChoice" value="Yes">Yes</input>
+		<input type="radio" name="cancelledChoice" value="No">No</input>
+		<input type="radio" name="paymentStatusChoice" value="Paid">Paid</input>
+		<input type="radio" name="paymentStatusChoice" value="Unpaid">Unpaid</input>
+		<input type="radio" name="statusChoice" value="Confirmed">Confirmed</input>
+		<input type="radio" name="statusChoice" value="Pending">Pending</input>
+		<input type="radio" name="statusChoice" value="Cancelled">Cancelled</input>
+		<input type="radio" name="typeChoice" value="Economy">Economy</input>
+		<input type="radio" name="typeChoice" value="Business">Business</input>
+		<input type="radio" name="typeChoice" value="First Class">First Class</input>
+
+</form>
+
+
+<li id="flightbookingsList" class="list"></li>
+
+        </div>
+
+
+<script src="flightbookings.js"></script>
+
+        <div class="footer"></div>
+        <script src="flightbookings.js"></script>
+        <script>
+                const openBtn = document.querySelector('.subheading button');
+                const navbar = document.querySelector('.navbar');
+                openBtn.addEventListener('click',()=>
+        {
+                console.log("openbtn clicked")
+                navbar.classList.toggle('hidden');
+        });
+        </script>
+</body>
+</html>
