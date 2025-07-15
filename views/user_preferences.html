@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User_preferences</title>
+<link href ="./output.css" rel="stylesheet"/><link href= "./css/styles.css" rel= "stylesheet">
+</head>
+<body>
+
+
+
+<!--Frontend code-->
+
+<!--views/user_preferences.html-->      <div class="heading">
+                <strong>user_preferences</strong>
+        </div>
+        <div class="subheading">
+                <button>Open Menu</button>
+        </div>
+<div class="contents">
+                <div class="navbar hidden">
+                        <ul>
+                                <a href="./activitiesPage"><li>activities</li></a>
+                                <a href="./activity_bookingsPage"><li>activity_bookings</li></a>
+                                <a href="./busPage"><li>bus</li></a>
+                                <a href="./busbookingsPage"><li>busbookings</li></a>
+                                <a href="./business_partnersPage"><li>business_partners</li></a>
+                                <a href="./cabbookingsPage"><li>cabbookings</li></a>
+                                <a href="./cabdriversPage"><li>cabdrivers</li></a>
+                                <a href="./cabsPage"><li>cabs</li></a>
+                                <a href="./currenciesPage"><li>currencies</li></a>
+                                <a href="./currency_conversion_ratesPage"><li>currency_conversion_rates</li></a>
+                                <a href="./email_notificationsPage"><li>email_notifications</li></a>
+                                <a href="./email_templatesPage"><li>email_templates</li></a>
+                                <a href="./faqsPage"><li>faqs</li></a>
+                                <a href="./flightbookingsPage"><li>flightbookings</li></a>
+                                <a href="./flightsPage"><li>flights</li></a>
+                                <a href="./hotelbookingsPage"><li>hotelbookings</li></a>
+                                <a href="./hotelsPage"><li>hotels</li></a>
+                                <a href="./itinerariesPage"><li>itineraries</li></a>
+                                <a href="./itinerary_placesPage"><li>itinerary_places</li></a>
+                                <a href="./languagesPage"><li>languages</li></a>
+                                <a href="./logsPage"><li>logs</li></a>
+                                <a href="./notificationsPage"><li>notifications</li></a>
+                                <a href="./payment_gateway_feesPage"><li>payment_gateway_fees</li></a>
+                                <a href="./payment_gateway_transactionsPage"><li>payment_gateway_transactions</li></a>
+                                <a href="./paymentsPage"><li>payments</li></a>
+                                <a href="./placesPage"><li>places</li></a>
+                                <a href="./promotionsPage"><li>promotions</li></a>
+                                <a href="./refundsPage"><li>refunds</li></a>
+                                <a href="./restaurantsPage"><li>restaurants</li></a>
+                                <a href="./reviewsPage"><li>reviews</li></a>
+                                <a href="./social_media_accountsPage"><li>social_media_accounts</li></a>
+                                <a href="./trainbookingsPage"><li>trainbookings</li></a>
+                                <a href="./trainsPage"><li>trains</li></a>
+                                <a href="./travel_curatorsPage"><li>travel_curators</li></a>
+                                <a href="./user_preferencesPage"><li>user_preferences</li></a>
+                                <a href="./usersPage"><li>users</li></a>
+                                <a href="./weather_infoPage"><li>weather_info </li></a>
+                        </ul>
+                </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+<!--Form submission part-->
+
+
+
+
+
+<form enctype="multipart/form-data" id ="user_preferences">  <div class="formentry">
+
+	<select id="BudgetRange" name="BudgetRange">		<option value="Low">Low</option>		<option value="Medium">Medium</option>		<option value="High">High</option>	</select>
+
+	<input type="number" id="LanguageID" placeholder="LanguageID"/> 
+	<input type="number" id="PreferenceID" placeholder="PreferenceID"/> 
+	<select id="PreferredAccommodationType" name="PreferredAccommodationType">		<option value="Hotel">Hotel</option>		<option value="Resort">Resort</option>		<option value="Villa">Villa</option>		<option value="Apartment">Apartment</option>		<option value="Hostel">Hostel</option>	</select>
+	<select id="PreferredActivities" name="PreferredActivities">		<option value="Sightseeing">Sightseeing</option>		<option value="Adventure">Adventure</option>		<option value="Shopping">Shopping</option>		<option value="Dining">Dining</option>		<option value="Cultural">Cultural</option>		<option value="Relaxation">Relaxation</option>	</select>
+	<select id="PreferredCuisine" name="PreferredCuisine">		<option value="Local">Local</option>		<option value="International">International</option>		<option value="Vegetarian">Vegetarian</option>		<option value="Vegan">Vegan</option>		<option value="Fast Food">Fast Food</option>	</select>
+	<select id="PreferredTransportation" name="PreferredTransportation">		<option value="Cab">Cab</option>		<option value="Bus">Bus</option>		<option value="Train">Train</option>		<option value="Private Car">Private Car</option>		<option value="Bicycle">Bicycle</option>	</select>
+	<select id="TravelGroupSize" name="TravelGroupSize">		<option value="Solo">Solo</option>		<option value="Couple">Couple</option>		<option value="Family">Family</option>		<option value="Group">Group</option>	</select>
+
+	<input type="number" id="UserID" placeholder="UserID"/> 
+
+<input type="submit" id ="user_preferencesSub"/>
+</div>
+
+</form>
+
+<!--Radio button and search bar-->
+
+
+
+<form id ="searchWindow">
+          <div class="search">
+        <input type="text" placeholder="Search" class="searchBar" id= "searchBar"/>     
+
+
+<ul id="searchList"></ul>
+
+<button id ="searchBtn"> &#x1F50D</button>         </div>
+		<input type="radio" name="BudgetRangeChoice" value="Low">Low</input>
+		<input type="radio" name="BudgetRangeChoice" value="Medium">Medium</input>
+		<input type="radio" name="BudgetRangeChoice" value="High">High</input>
+		<input type="radio" name="PreferredAccommodationTypeChoice" value="Hotel">Hotel</input>
+		<input type="radio" name="PreferredAccommodationTypeChoice" value="Resort">Resort</input>
+		<input type="radio" name="PreferredAccommodationTypeChoice" value="Villa">Villa</input>
+		<input type="radio" name="PreferredAccommodationTypeChoice" value="Apartment">Apartment</input>
+		<input type="radio" name="PreferredAccommodationTypeChoice" value="Hostel">Hostel</input>
+		<input type="radio" name="PreferredActivitiesChoice" value="Sightseeing">Sightseeing</input>
+		<input type="radio" name="PreferredActivitiesChoice" value="Adventure">Adventure</input>
+		<input type="radio" name="PreferredActivitiesChoice" value="Shopping">Shopping</input>
+		<input type="radio" name="PreferredActivitiesChoice" value="Dining">Dining</input>
+		<input type="radio" name="PreferredActivitiesChoice" value="Cultural">Cultural</input>
+		<input type="radio" name="PreferredActivitiesChoice" value="Relaxation">Relaxation</input>
+		<input type="radio" name="PreferredCuisineChoice" value="Local">Local</input>
+		<input type="radio" name="PreferredCuisineChoice" value="International">International</input>
+		<input type="radio" name="PreferredCuisineChoice" value="Vegetarian">Vegetarian</input>
+		<input type="radio" name="PreferredCuisineChoice" value="Vegan">Vegan</input>
+		<input type="radio" name="PreferredCuisineChoice" value="Fast Food">Fast Food</input>
+		<input type="radio" name="PreferredTransportationChoice" value="Cab">Cab</input>
+		<input type="radio" name="PreferredTransportationChoice" value="Bus">Bus</input>
+		<input type="radio" name="PreferredTransportationChoice" value="Train">Train</input>
+		<input type="radio" name="PreferredTransportationChoice" value="Private Car">Private Car</input>
+		<input type="radio" name="PreferredTransportationChoice" value="Bicycle">Bicycle</input>
+		<input type="radio" name="TravelGroupSizeChoice" value="Solo">Solo</input>
+		<input type="radio" name="TravelGroupSizeChoice" value="Couple">Couple</input>
+		<input type="radio" name="TravelGroupSizeChoice" value="Family">Family</input>
+		<input type="radio" name="TravelGroupSizeChoice" value="Group">Group</input>
+
+</form>
+
+
+<li id="user_preferencesList" class="list"></li>
+
+        </div>
+
+
+<script src="user_preferences.js"></script>
+
+        <div class="footer"></div>
+        <script src="user_preferences.js"></script>
+        <script>
+                const openBtn = document.querySelector('.subheading button');
+                const navbar = document.querySelector('.navbar');
+                openBtn.addEventListener('click',()=>
+        {
+                console.log("openbtn clicked")
+                navbar.classList.toggle('hidden');
+        });
+        </script>
+</body>
+</html>

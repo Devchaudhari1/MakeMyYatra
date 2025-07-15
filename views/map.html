@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <link href="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.css" rel="stylesheet" />
+    <link href="./css/map.css" rel="stylesheet">
+    <!-- Include polyline library for decoding the polyline -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mapbox-polyline/1.2.1/polyline.js"></script>
+    
+    <!-- Include Turf.js for GeoJSON and other operations -->
+    <script src="https://cdn.jsdelivr.net/npm/@turf/turf/turf.min.js"></script>
+</head>
+<body>
+    <div class="full">
+    <div class="out-container">
+        <div class="searchBar">
+    <input type="text" placeholder="Search for a place " id="search">
+    <button id="searchbtn">Submit</button>
+</div>
+    <div class="routeBar">
+    <input type="text" placeholder="Origin" id="origin">
+    <input type="text" placeholder="Destination" id="destination">
+    <div class="btnopt">
+    <button id="routebtn">Find Route</button>
+
+    <a href="" id="bookUber">Book Uber</a>
+</div>
+</div>
+</div>
+
+    <div id="map" style="width:100%; height:500px"></div>
+    <div id="footer" class="footer">
+        <p class="dist" id ="dist"></p>
+        <p class="dur" id = "dur"></p>
+    </div>
+
+</div>
+    <!-- Mapbox GL JS -->
+    <script src="https://api.mapbox.com/mapbox-gl-js/v2.6.1/mapbox-gl.js"></script>
+
+    <script>
+        // Access token for Mapbox
+        mapboxgl.accessToken = 'pk.eyJ1IjoiZGV2Y2hhdWRoYXJpIiwiYSI6ImNtOHB4NDE5ejA3YXIyanM4cmQzbmIyMGwifQ.xU-daOsHSMOzh3LNI7aM-g';
+        
+        const map = new mapboxgl.Map({
+            container: 'map',
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [81, 21],
+            zoom: 5
+        });
+
+        var geolocate = new mapboxgl.GeolocateControl({
+            positionOptions: {
+                enableHighAccuracy: true
+            },
+            trackUserLocation: true
+        });
+
+        map.addControl(geolocate);
+
+        geolocate.on('geolocate', function (e) {
+            var lng = e.coords.longitude;
+            var lat = e.coords.latitude;
+            map.flyTo({
+                center: [lng, lat],
+                zoom: 10
+            });
+        });
+
+        const search = document.getElementById('search');
+        const searchbtn = document.getElementById('searchbtn');
+        let oriCoord , destCoord;
+        searchbtn.addEventListener('click', async () => {
+            const input = search.value.trim();
+            console.log(`search(${input} initiated`);
+            try {
+                const response = await fetch(`/map/${input}`, { method: 'GET' });
+                const result = await response.json();
+                console.log("Features : ", result);
+                if (response.status == 200) {
+                    const featFirst = result.features[0];
+                    const c = featFirst.center;
+                    console.log("Center is ", c);
+                    console.log("successfully retrieved geocode");
+                    map.flyTo({
+                        center: featFirst.center,
+                        zoom: 10
+                    });
+                    new mapboxgl.Marker()
+                        .setLngLat(featFirst.center)
+                        .setPopup(new mapboxgl.Popup({ offset: 25 }))
+                        .setText(featFirst.place_name)
+                        .addTo(map);
+
+                } else {
+                    console.error("An error occurred", response.error);
+                }
+            } catch (err) {
+                if (err) {
+                    console.error(`An error occurred: ${err}`);
+                }
+            }
+        });
+
+        function getRoute(originCoords, destCoords) {
+            const url = `https://api.mapbox.com/directions/v5/mapbox/driving/${originCoords[0]},${originCoords[1]};${destCoords[0]},${destCoords[1]}?steps=true&access_token=${mapboxgl.accessToken}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Data is ", data);
+
+                    if (data.routes.length > 0) {
+                        const route = data.routes[0];
+                        console.log("route is", route);
+                            let dist = document.querySelector('.dist');
+                            let dur = document.querySelector('.dur');
+                            const k= Math.floor(route.distance/1000);
+                            const m =Math.floor(route.distance %1000);
+                            const h = Math.floor(route.duration/3600);
+                            const min = Math.floor((route.duration%3600)/60);
+                            if(k>0)
+                            dist.innerHTML=`Distance :${k}km ${m} m`;
+                            else
+                            dist.innerHTML=`Distance :${m}`;
+                            if(h>0)
+                            dur.innerHTML=`Time :${h} hr ${min} min`;
+                            else
+                            dur.innerHTML=`Time:${min} min`;
+                        // Ensure polyline is available here
+                        if (typeof polyline !== 'undefined') {
+                            const decodedCoordinates = polyline.decode(route.geometry);
+                            const correctedCoordinates = decodedCoordinates.map(coord => [coord[1], coord[0]]);
+                            console.log("Corrected coordinates:", correctedCoordinates);
+                            // Convert the decoded coordinates into a GeoJSON LineString using Turf.js
+                            const geojson = turf.lineString(correctedCoordinates);
+                            console.log("GeoJSON route:", geojson);
+                            // Clear previous route if any
+                            if (map.getSource('route')) {
+                                map.removeLayer('route');
+                                map.removeSource('route');
+                            }
+
+                            // Add the route to the map as GeoJSON
+                            map.addSource('route', {
+                                type: 'geojson',
+                                data: geojson
+                            });
+
+                            map.addLayer({
+                                id: 'route',
+                                type: 'line',
+                                source: 'route',
+                                layout: {
+                                    'line-join': 'round',
+                                    'line-cap': 'round'
+                                },
+                                paint: {
+                                    'line-color': '#3887be',
+                                    'line-width': 5
+                                }
+                            });
+                            const bounds = turf.bbox(geojson);  // Get the bounding box of the route
+                        map.fitBounds(bounds, { padding: 50 }); // Fit the map to the bounding box with padding
+
+                            
+                        } else {
+                            console.error("polyline library not loaded correctly");
+                        }
+                    }
+                })
+                .catch(err => console.error('Error fetching route:', err));
+        }
+        const bookUber = document.getElementById('bookUber');
+        const origin = document.getElementById('origin').value.trim();
+            const destination = document.getElementById('destination').value.trim();
+        bookUber.addEventListener('click',()=>{
+            bookUber.href=`https://m.uber.com/?action=setPickup&pickup[latitude]=${oriCoord[1]}&pickup[longitude]=${oriCoord[0]}&pickup[nickname]=${encodeURIComponent(origin)}&dropoff[latitude]=${destCoord[1]}&dropoff[longitude]=${destCoord[0]}&dropoff[nickname]=${encodeURIComponent(destination)}`;
+                        console.log(`Uber link is :${bookUber.href}`);
+            window.location.href=bookUber.href;
+        })
+        document.getElementById('routebtn').addEventListener('click', () => {
+            const origin = document.getElementById('origin').value.trim();
+            const destination = document.getElementById('destination').value.trim();
+            console.log(`Listening for route between ${origin} and ${destination}`);
+
+            if (origin && destination) {
+                // Convert address to coordinates using geocoding
+                getCoordinates(origin).then(originCoords => {
+                    getCoordinates(destination).then(destCoords => {
+                        oriCoord= originCoords;
+                        destCoord=destCoords;
+                        getRoute(originCoords, destCoords);
+                        bookUber.href=`https://m.uber.com/?action=setPickup&pickup[latitude]=${oriCoord[1]}&pickup[longitude]=${oriCoord[0]}&pickup[nickname]=${encodeURIComponent(origin)}&dropoff[latitude]=${destCoord[1]}&dropoff[longitude]=${destCoord[0]}&dropoff[nickname]=${encodeURIComponent(destination)}`;
+                        console.log(`Uber link is :${bookUber.href}`);
+                    });
+                });
+            }
+        });
+
+        // Geocode address to coordinates
+        async function getCoordinates(address) {
+            const geocodeUrl = `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(address)}.json?access_token=${mapboxgl.accessToken}`;
+            const response = await fetch(geocodeUrl);
+            const data = await response.json();
+            const coordinates = data.features[0].center;
+            console.log("Feature is ", data);
+            console.log("Coordinates are", coordinates);
+            return coordinates; // Return [longitude, latitude]
+        }
+    </script>
+</body>
+</html>
