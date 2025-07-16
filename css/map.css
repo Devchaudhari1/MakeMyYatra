@@ -1,0 +1,62 @@
+html,body{
+    height:100%;
+    margin:0;
+}
+#searchbtn{
+    height:20px;
+    background-color:black;
+    color:white;
+    border-radius:20px;
+}
+#origin ,#destination ,#search {
+    height:20px;
+    border-radius:8px;
+}
+#routebtn{
+    height:20px;
+    border-radius:20px;
+    background-color:black;
+    color:white;
+}
+#bookUber , #bookOla {
+    height:50px;
+    width:100px;
+    background-color:black;
+    color:white;
+    border-radius:20px;
+    margin-left:20px;
+    margin-right:20px;
+}
+.full{
+    min-height:100vh;
+}
+a{
+    text-decoration:none;
+}
+.out-container{
+    display:grid;
+    grid-template-columns:repeat(1fr,4);
+    background-color:rgb(62, 62, 69);
+    justify-items:center;
+}
+.searchBar{
+    grid-column:0/2;
+}
+.routeBar{
+    grid-column:2/4;
+}
+#bookUber:hover , #routebtn:hover{
+    background-color:rgb(52, 0, 0);
+}
+#footer{
+    background-color:rgb(62, 62, 69);
+    display:flex;
+    flex-direction:column;
+    
+}
+.footer p{
+    color:white;
+    width:100%;
+    
+
+}

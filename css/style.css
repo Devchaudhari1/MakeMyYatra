@@ -1,0 +1,234 @@
+.wrapper {
+  width: 100%;
+  margin: 0 auto;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0a0f1a, #1a1e2b);
+}
+
+body {
+  height: 100%;
+  margin: 0;
+  color: #f0f0f0;
+  font-family: 'Poppins', sans-serif;
+  background: radial-gradient(circle at top left, #0a0f1a, #1a1e2b);
+  line-height: 1.8;
+}
+
+body h1,
+body h2,
+body h3,
+body h4,
+body h5,
+body h6 {
+  position: relative;
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+body h1 {
+  font-size: 3.5em;
+  font-weight: 700;
+  letter-spacing: -2px;
+  margin: 0;
+  background: linear-gradient(45deg, #ff7e5f, #feb47b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+body a {
+  color: #ff7e5f;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+body a:hover {
+  color: #feb47b;
+  text-shadow: 0 0 10px rgba(255, 126, 95, 0.7);
+}
+
+.site-header {
+  width: 100%;
+  padding: 50px 0;
+  margin: 0;
+  background: rgba(10, 15, 26, 0.8);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
+}
+
+.site-header .site-info {
+  overflow: hidden;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+}
+
+.site-header .site-info h1 {
+  width: 100%;
+  font-size: 4em;
+  animation: glow 3s infinite alternate;
+}
+
+.site-header .site-info h4 {
+  padding-top: 20px;
+  font-size: 1.5em;
+  color: #feb47b;
+}
+
+.site-content {
+  position: relative;
+  width: 100%;
+  z-index: 5;
+}
+
+.site-content .primary-section {
+  background: linear-gradient(135deg, #003044, #004466);
+  min-height: 100vh;
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.site-content .primary-section .primary-image {
+  background: linear-gradient(135deg, rgba(0, 48, 68, 0.9), rgba(0, 68, 102, 0.9)), url(http://i.imgur.com/ijQuV.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  animation: float 6s infinite ease-in-out;
+}
+
+.site-content .primary-section .primary-image img {
+  width: 100%;
+  height: auto;
+}
+
+.site-content .primary-options {
+  margin: 100px 0;
+  width: 100%;
+  text-align: center;
+}
+
+.site-content .primary-options h3 {
+  font-size: 2.5em;
+  color: #ff7e5f;
+  margin-bottom: 30px;
+}
+
+.site-content .primary-options .options {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 800px;
+}
+
+.site-content .primary-options .options pre {
+  display: inline-block;
+  text-align: left;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 20px;
+  border-radius: 10px;
+  backdrop-filter: blur(5px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.site-content .primary-options .options p {
+  max-width: 400px;
+  font-family: 'Courier New', monospace;
+  padding: 0;
+  margin: 0 auto;
+  text-align: left;
+  color: #f0f0f0;
+}
+
+.site-content .primary-options .options p.indent {
+  text-indent: 20px;
+}
+
+.site-content .primary-options .options p.explain {
+  color: #feb47b;
+}
+
+.site-content .primary-call {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+  width: 100%;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #003044, #004466);
+}
+
+.site-content .primary-call h2 {
+  font-size: 2.5em;
+  color: #ff7e5f;
+  animation: glow 3s infinite alternate;
+}
+
+.closing-image {
+  width: 100%;
+  background: linear-gradient(135deg, #003044, #004466);
+  min-height: 100vh;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.closing-image .footer-image {
+  background: linear-gradient(135deg, rgba(0, 48, 68, 0.9), rgba(0, 68, 102, 0.9)), url(../img/mountains.jpg) no-repeat;
+  background-position: center;
+  background-size: cover;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  animation: float 6s infinite ease-in-out;
+}
+
+.closing-image .footer-image img {
+  width: 100%;
+  height: auto;
+}
+
+.site-footer {
+  width: 100%;
+  text-align: center;
+  padding: 50px 0;
+  background: rgba(10, 15, 26, 0.8);
+  backdrop-filter: blur(10px);
+  position: relative;
+  z-index: 10;
+}
+
+.site-footer p {
+  color: #feb47b;
+  font-size: 1.2em;
+}
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 10px rgba(255, 126, 95, 0.7);
+  }
+  100% {
+    text-shadow: 0 0 20px rgba(255, 126, 95, 1), 0 0 40px rgba(255, 126, 95, 0.7);
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}

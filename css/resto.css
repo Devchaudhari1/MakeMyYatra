@@ -1,0 +1,15 @@
+.outerresto{
+    background-color:yellow;
+}
+.restaurant {
+    margin: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .restaurant img {
+    border-radius: 8px;
+  }
+  
+
+  
