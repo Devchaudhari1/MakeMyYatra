@@ -1,6 +1,6 @@
 const axios =require('axios');
-
-const token = 'pk.eyJ1IjoiZGV2Y2hhdWRoYXJpIiwiYSI6ImNtOHB4NDE5ejA3YXIyanM4cmQzbmIyMGwifQ.xU-daOsHSMOzh3LNI7aM-g';
+require('dotenv').config()'
+const token = process.env.MAPBOX_TOKEN;
 
 
 const searchPlace = async (req ,res)=>{
